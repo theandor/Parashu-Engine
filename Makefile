@@ -1,11 +1,13 @@
-STD := c++17
-SOURCES := $(shell find . -name "*.cpp")
+STD := -std=c++17
+SOURCES := $(wildcard src/*.cpp)
 OUT := parashu
-FLAGS :=
+FLAGS := -Wall -Werror
 CXX := g++
+
+.PHONY: build clean
 
 build: src/
 	mkdir build
-	${CXX} -o parashu-engine ${SOURCES} -o build/${OUT} ${FLAGS} -std=${STD}
+	${CXX} -o parashu-engine ${SOURCES} -o build/${OUT} ${FLAGS} ${STD}
 clean: build/
 	rm -r build
